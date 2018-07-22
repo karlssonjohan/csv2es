@@ -16,3 +16,5 @@ _build
 .idea
 *.iml
 rebar3.crashdump
+src/csv2es_parser.erl
+src/csv2es_s_scan.erl

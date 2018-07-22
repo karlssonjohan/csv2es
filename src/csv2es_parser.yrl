@@ -6,6 +6,7 @@ Terminals string newline.
 
 Rootsymbol Row.
 
+
 % Start
 Row -> elements newline: ['$1'].
 Row -> elements newline Row: ['$1'] ++ '$3'.

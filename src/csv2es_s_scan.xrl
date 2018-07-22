@@ -1,5 +1,5 @@
 %% File:         csv2es_s_scan.xrl
-%% Description:  Scans files with ";" as field delimiter. 
+%% Description:  Scans CSV files with ";" as field delimiter. 
 %%               "%%" is the comment token.
 
 Definitions.
