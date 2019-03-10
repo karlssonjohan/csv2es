@@ -1,0 +1,12 @@
+{
+    "mappings" : {
+        "_doc" : {
+            "dynamic": "strict",
+            "properties" : {
+                "timestamp" : { "type" : "date" },
+                "value1" : { "type" : "long" },
+                "value2" : { "type" : "long" }
+            }
+        }
+    }
+}

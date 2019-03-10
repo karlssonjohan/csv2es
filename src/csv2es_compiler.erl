@@ -23,11 +23,7 @@ compile(Scanner, String, Options) ->
     Parser = (?DEFAULT_PARSER),
     {ok, R} = Parser(scan(Scanner, String)),
     P = to_prop_lists(R),
-    NewP = case proplists:get_value(type_spec,Options) of
-                undefined -> P;
-                TypeSpec -> to_types(TypeSpec,P)
-            end,
-    AdpatedList = adapt_to_jsone(NewP),
+    AdpatedList = adapt_to_jsone(P),
     TheESoptions = to_es_options(proplists:get_value(es_options,Options)),
     {TheESoptions,AdpatedList}.
 
@@ -49,26 +45,6 @@ to_prop_lists(_,[],PL) ->
     PL;
 to_prop_lists(Keys,[H|T],PL) ->
     to_prop_lists(Keys,T,[lists:zip(Keys,H)|PL]).
-
-
-%% String to types
-to_types(TypeSpec,L) ->
-    io:format("~p~n",[TypeSpec]),
-    F = fun(KV) -> maybe_convert_type(TypeSpec,KV) end,
-    lists:map(fun(PL) -> lists:map(F,PL) end, L).
-
-maybe_convert_type(TypeSpec, {Key,Value}) ->
-    case proplists:get_value(Key,TypeSpec) of
-        undefined -> {Key,Value};
-        Type -> {Key,to_type(Type,Value)}
-    end.
-
-
-%%% To type
-to_type(integer,V) ->
-    list_to_integer(V);
-to_type(float,V) ->
-    list_to_float(V).
 
 
 %% Adapt to jsone format

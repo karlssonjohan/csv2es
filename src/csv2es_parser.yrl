@@ -8,6 +8,7 @@ Rootsymbol Row.
 
 
 % Start
+Row -> elements: ['$1'].
 Row -> elements newline: ['$1'].
 Row -> elements newline Row: ['$1'] ++ '$3'.
 

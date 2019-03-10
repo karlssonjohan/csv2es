@@ -1,20 +1,20 @@
 %% File:         csv2es_s_scan.xrl
 %% Description:  Scans CSV files with ";" as field delimiter. 
-%%               "%%" is the comment token.
+%%               "#" is the comment token.
 
 Definitions.
 
-T = [0-9a-zA-Zåäö\.\-\,\s@]
+T = [0-9a-zA-Zåäö\.\-\,\s@_]
 
 
 Rules.
 
-{T}+ : 
-              {token,{string,TokenLine,TokenChars}}.
+{T}+ :        {token,{string,TokenLine,TokenChars}}.
 \;\; :        {token,{string,TokenLine,"null"}}.
 \r\n :        {token,{newline,TokenLine}}.
 \n :          {token,{newline,TokenLine}}.
-\%\%.*\r\n :  skip_token.
+#.*\r\n :     skip_token.
+#.*\n :       skip_token.
 \; :          skip_token.
 
 
