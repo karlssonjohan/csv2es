@@ -30,10 +30,18 @@ Create the bulk file:
 _build/default/bin/csv2es -c example/csv.csv bulk-file
 ```
 
-Create ES index and mapping:
+Create ES index:
+
+Alt 1 - using a mapping file:
 
 ```bash
 curl -s -H "Content-Type: application/json" -XPUT localhost:9200/csv2es --data-binary @example/mapping.json
+```
+
+Alt 2 - make ES do some guesswork:
+
+```bash
+curl -s -H "Content-Type: application/json" -XPUT localhost:9200/csv2es --data-binary @example/numeric_detection.json
 ```
 
 Load the bulk file:
