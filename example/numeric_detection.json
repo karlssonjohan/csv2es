@@ -1,0 +1,7 @@
+{
+  "mappings": {
+    "_doc": {
+      "numeric_detection": true
+    }
+  }
+}
