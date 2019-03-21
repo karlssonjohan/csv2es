@@ -57,3 +57,7 @@ curl -XGET 'http://127.0.0.1:9200/csv2es/_search?pretty&size=10'
 ```
 
 In the response the fields "value1" and "value2" might look like strings but they aren't.
+
+## Illegal token
+
+If you get an "Illegal token" error and the printout is garbled you can go to https://unicodelookup.com/ and look it up using the decimal number. Then add the token to the "csv2es_s_scan.xrl" file (if appropriate) and re-compile.

@@ -3,6 +3,8 @@
 %% API exports
 -export([main/1]).
 
+-define(BOM,65279). %% ZERO WIDTH NO-BREAK SPACE (BYTE ORDER MARK)
+
 
 %%====================================================================
 %% API functions
@@ -67,11 +69,9 @@ esoptions2pl(Options) ->
 
 csv2list(CSV) ->
     {ok, Binary} = file:read_file(CSV),
-    case unicode:characters_to_list(Binary) of
-        %% Remove ZERO WIDTH NO-BREAK SPACE (BYTE ORDER MARK)
-        [65279|T] -> T;
-        List -> List
-    end.
+    List = unicode:characters_to_list(Binary),
+    %% Remove BOM
+    lists:filter(fun(X) -> X /= ?BOM end,List).
 
 
 %% Adapt to jsone format
