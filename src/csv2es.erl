@@ -103,5 +103,6 @@ print_scanner_error({Line,_Module,{illegal,Token}}) ->
     io:format("Illegal token: ~p, ~w, on line: ~p~n",[Token, Token, Line]).
 
 
+%% This is probably slow
 write_file(ESOPtions,Proplist,File) ->
     lists:foreach(fun(L) -> file:write_file(File,[jsone:encode(ESOPtions),<<"\n">>,jsone:encode(L),<<"\n">>],[append]) end,Proplist).

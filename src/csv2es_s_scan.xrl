@@ -9,6 +9,7 @@ T = [0-9a-zA-ZåäöÅÄÖ\.\-\,\s@_µβ)(:%&è<>é/üêàô'+â\\]
 SC = ;
 NL = (\r\n|\n|\r)
 COMMENT = #.*
+%% S = ^ Not supported by Leex. 
 
 
 Rules.
@@ -17,6 +18,7 @@ Rules.
 {SC} :          skip_token.
 {NL} :          {token,{newline,TokenLine}}.
 %% Pushback ruins line numbering... :(
+%%{S}{SC} :     {token,{string,TokenLine,"null"},";"}.
 {SC}{SC} :      {token,{string,TokenLine,"null"},";"}.
 {SC}{NL} :      {token,{string, TokenLine,"null"},"\r\n"}.
 {COMMENT}{NL} : skip_token.

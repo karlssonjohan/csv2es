@@ -1,6 +1,6 @@
 %% File:        csv2es_parser.yrl
 
-Nonterminals Row elements element.
+Nonterminals Row elements.
 
 Terminals string newline.
 
@@ -12,10 +12,8 @@ Row -> elements: ['$1'].
 Row -> elements newline: ['$1'].
 Row -> elements newline Row: ['$1'] ++ '$3'.
 
-elements -> element: ['$1'].
-elements -> element elements: ['$1'] ++ '$2'.
-
-element -> string : v('$1').
+elements -> string: [v('$1')].
+elements -> string elements: [v('$1')] ++ '$2'.
 
 
 Erlang code.
